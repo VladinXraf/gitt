@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Современный веб-сайт</title>
+    <title>🔥 СУПЕР БОМБА САЙТ 🔥</title>
     <style>
         * {
             margin: 0;
@@ -201,23 +201,347 @@
             opacity: 0.8;
         }
 
+        /* Система частиц */
+        .particle-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: particleMove 10s linear infinite;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Эффект Матрицы */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 14px;
+            animation: matrixRain linear infinite;
+        }
+
+        @keyframes matrixRain {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* 3D Эффекты */
+        .container-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-20px) rotateX(10deg) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Неоновые эффекты */
+        .neon-text {
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 15px #fff,
+                0 0 20px #ff6b6b,
+                0 0 35px #ff6b6b,
+                0 0 40px #ff6b6b;
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from {
+                text-shadow: 
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 15px #fff,
+                    0 0 20px #ff6b6b,
+                    0 0 35px #ff6b6b,
+                    0 0 40px #ff6b6b;
+            }
+            to {
+                text-shadow: 
+                    0 0 2px #fff,
+                    0 0 5px #fff,
+                    0 0 8px #fff,
+                    0 0 12px #4ecdc4,
+                    0 0 18px #4ecdc4,
+                    0 0 25px #4ecdc4;
+            }
+        }
+
+        /* Голографический эффект */
+        .hologram {
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%);
+            background-size: 200% 200%;
+            animation: hologramShift 3s ease-in-out infinite;
+        }
+
+        @keyframes hologramShift {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+        }
+
+        /* Глитч эффект */
+        .glitch {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: #ff0000;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: #00ffff;
+            z-index: -2;
+        }
+
+        @keyframes glitch {
+            0%, 74%, 100% { transform: translate(0); }
+            75% { transform: translate(-2px, 2px); }
+            76% { transform: translate(2px, -2px); }
+            77% { transform: translate(-2px, -2px); }
+            78% { transform: translate(2px, 2px); }
+            79% { transform: translate(-2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(2px, 0px); }
+            40% { transform: translate(-2px, 0px); }
+            60% { transform: translate(0px, 2px); }
+            80% { transform: translate(0px, -2px); }
+        }
+
+        /* Взрывной эффект */
+        .explosion {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .explosion-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Пульсирующие кольца */
+        .pulse-ring {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s ease-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Дополнительные кнопки */
+        .mega-button {
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0);
+            background-size: 300% 300%;
+            animation: gradientShift 2s ease infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mega-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .mega-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Секретная панель */
+        .secret-panel {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #0f0;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #0f0;
+            font-family: 'Courier New', monospace;
+            transition: top 0.5s ease;
+            z-index: 1001;
+        }
+
+        .secret-panel.show {
+            top: 20px;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .container { padding: 1rem; margin: 1rem; }
             .features { grid-template-columns: 1fr; }
+            .particle { width: 2px; height: 2px; }
         }
     </style>
 </head>
 <body>
+    <!-- Эффект Матрицы -->
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <!-- Система частиц -->
+    <div class="particle-system" id="particleSystem"></div>
+    
+    <!-- Секретная панель -->
+    <div class="secret-panel" id="secretPanel">
+        🔒 СЕКРЕТНЫЙ РЕЖИМ АКТИВИРОВАН 🔒<br>
+        Комбо: ↑↑↓↓←→←→BA
+    </div>
+
     <div class="floating-elements">
         <div class="floating-element"></div>
         <div class="floating-element"></div>
         <div class="floating-element"></div>
     </div>
 
-    <div class="container">
-        <h1>🚀 Добро пожаловать!</h1>
-        <p class="subtitle">Современный и интерактивный веб-сайт</p>
+    <div class="container container-3d">
+        <h1 class="neon-text glitch" data-text="💣 СУПЕР БОМБА! 💣">💣 СУПЕР БОМБА! 💣</h1>
+        <p class="subtitle hologram">Самый крутой сайт во вселенной! 🌟</p>
         
         <div class="stats">
             <div class="stat-item">
@@ -260,6 +584,18 @@
         
         <button class="cta-button" onclick="changeTheme()">
             🌈 Сменить тему
+        </button>
+        
+        <button class="cta-button mega-button" onclick="megaExplosion()">
+            💥 МЕГА ВЗРЫВ! 💥
+        </button>
+        
+        <button class="cta-button" onclick="toggleMatrix()">
+            🔋 МАТРИЦА
+        </button>
+        
+        <button class="cta-button" onclick="activateGodMode()">
+            ⚡ БОГ РЕЖИМ ⚡
         </button>
     </div>
 
@@ -448,7 +784,225 @@
             setTimeout(() => {
                 typeWriter(title, originalText, 150);
             }, 1000);
+            
+            // Запускаем системы эффектов
+            initParticleSystem();
+            initMatrixEffect();
         });
+
+        // Система частиц
+        function initParticleSystem() {
+            const particleSystem = document.getElementById('particleSystem');
+            
+            setInterval(() => {
+                createParticle();
+            }, 200);
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                
+                // Случайные цвета
+                const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.boxShadow = `0 0 6px ${colors[Math.floor(Math.random() * colors.length)]}`;
+                
+                particleSystem.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 12000);
+            }
+        }
+        // Эффект Матрицы
+        let matrixActive = false;
+        
+        function initMatrixEffect() {
+            const matrixBg = document.getElementById('matrixBg');
+            const chars = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789@#$%^&*()';
+            
+            for (let i = 0; i < 50; i++) {
+                createMatrixColumn();
+            }
+            
+            function createMatrixColumn() {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = Math.random() * 100 + '%';
+                column.style.animationDuration = (2 + Math.random() * 3) + 's';
+                column.style.animationDelay = Math.random() * 2 + 's';
+                
+                let text = '';
+                for (let j = 0; j < 20; j++) {
+                    text += chars[Math.floor(Math.random() * chars.length)] + '<br>';
+                }
+                column.innerHTML = text;
+                
+                matrixBg.appendChild(column);
+                
+                setTimeout(() => {
+                    if (column.parentNode) {
+                        column.remove();
+                        if (matrixActive) createMatrixColumn();
+                    }
+                }, 5000);
+            }
+        }
+
+        // Переключение Матрицы
+        function toggleMatrix() {
+            matrixActive = !matrixActive;
+            const matrixBg = document.getElementById('matrixBg');
+            
+            if (matrixActive) {
+                matrixBg.style.opacity = '0.1';
+                showNotification('🔋 МАТРИЦА АКТИВИРОВАНА! Добро пожаловать в реальность!', '#0f0');
+            } else {
+                matrixBg.style.opacity = '0';
+                showNotification('🔌 Матрица отключена', '#ff6b6b');
+            }
+        }
+
+        // МЕГА ВЗРЫВ
+        function megaExplosion() {
+            // Создаем множественные взрывы
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createExplosion(
+                        Math.random() * window.innerWidth,
+                        Math.random() * window.innerHeight
+                    );
+                }, i * 100);
+            }
+            
+            // Трясем экран
+            document.body.style.animation = 'shake 1s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 1000);
+            
+            showNotification('💥💥💥 МЕГА ВЗРЫВ АКТИВИРОВАН! 💥💥💥', '#ff0000');
+        }
+
+        // Создание взрыва
+        function createExplosion(x, y) {
+            const explosion = document.createElement('div');
+            explosion.className = 'explosion';
+            explosion.style.left = x + 'px';
+            explosion.style.top = y + 'px';
+            
+            // Создаем частицы взрыва
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'explosion-particle';
+                
+                const angle = (i / 30) * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const endX = Math.cos(angle) * distance;
+                const endY = Math.sin(angle) * distance;
+                
+                particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                particle.style.transform = `translate(${endX}px, ${endY}px)`;
+                
+                explosion.appendChild(particle);
+            }
+            
+            document.body.appendChild(explosion);
+            setTimeout(() => explosion.remove(), 2000);
+        }
+
+        // БОГ РЕЖИМ
+        let godMode = false;
+        
+        function activateGodMode() {
+            godMode = !godMode;
+            
+            if (godMode) {
+                document.body.style.filter = 'contrast(1.2) saturate(1.5) hue-rotate(0deg)';
+                
+                const style = document.createElement('style');
+                style.id = 'god-mode-style';
+                style.textContent = `
+                    .container { 
+                        box-shadow: 0 0 50px #4ecdc4, 0 0 100px #ff6b6b !important;
+                        animation: godGlow 2s ease-in-out infinite alternate !important;
+                    }
+                    @keyframes godGlow {
+                        from { transform: scale(1); }
+                        to { transform: scale(1.05); }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                showNotification('⚡⚡⚡ БОГ РЕЖИМ АКТИВИРОВАН! ВЫ ВСЕМОГУЩИ! ⚡⚡⚡', '#ffff00');
+                
+            } else {
+                document.body.style.filter = '';
+                const godStyle = document.getElementById('god-mode-style');
+                if (godStyle) godStyle.remove();
+                
+                showNotification('😇 Бог режим деактивирован', '#ccc');
+            }
+        }
+
+        // Улучшенная система уведомлений
+        function showNotification(message, color = '#4ecdc4') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${color};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                z-index: 10000;
+                font-weight: bold;
+                animation: slideInBounce 0.5s ease-out;
+                max-width: 300px;
+            `;
+            
+            notification.innerHTML = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+        }
+
+        // Добавляем анимацию тряски
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translate(0); }
+                10% { transform: translate(-10px, -10px); }
+                20% { transform: translate(10px, -10px); }
+                30% { transform: translate(-10px, 10px); }
+                40% { transform: translate(10px, 10px); }
+                50% { transform: translate(-10px, -10px); }
+                60% { transform: translate(10px, -10px); }
+                70% { transform: translate(-10px, 10px); }
+                80% { transform: translate(10px, 10px); }
+                90% { transform: translate(-10px, -10px); }
+            }
+            @keyframes slideInBounce {
+                0% { 
+                    transform: translateX(100%) scale(0.5);
+                    opacity: 0;
+                }
+                100% { 
+                    transform: translateX(0) scale(1);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
     </script>
 </body>
 </html>
