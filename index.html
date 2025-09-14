@@ -2,10 +2,554 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мой сайт</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMaster - Изучение программирования</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .languages {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .language-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .language-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        .language-logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tutorials {
+            margin: 4rem 0;
+        }
+
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .tutorial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tutorial-content {
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .tutorial-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .tutorial-desc {
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .tutorial-level {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .code-example {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            border-left: 4px solid #ffd700;
+        }
+
+        .resource-section {
+            margin: 4rem 0;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>🎉 Привет из gitt!</h1>
-    <p>Это мой первый коммит.</p>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">💻 CodeMaster</a>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#languages">Языки</a></li>
+                <li><a href="#tutorials">Туториалы</a></li>
+                <li><a href="#resources">Ресурсы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>🚀 Изучай программирование легко!</h1>
+                <p>Твой путь в мир кода начинается здесь. Изучай популярные языки программирования, выполняй практические задания и становись профессиональным разработчиком.</p>
+                <a href="#languages" class="cta-button">Начать обучение</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Структурированное обучение</h3>
+                    <p>Пошаговые уроки от основ до продвинутых тем</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Практические примеры</h3>
+                    <p>Реальные проекты и задачи для закрепления знаний</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Интерактивность</h3>
+                    <p>Попробуй код прямо в браузере</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="languages">
+            <div class="container">
+                <h2 class="section-title">🌟 Популярные языки программирования</h2>
+                <div class="language-grid">
+                    <div class="language-card" onclick="showLanguageInfo('python')">
+                        <div class="language-logo">🐍</div>
+                        <h3>Python</h3>
+                        <p>Простой и мощный язык для начинающих</p>
+                    </div>
+                    <div class="language-card" onclick="showLanguageInfo('javascript')">
+                        <div class="language-logo">⚡</div>
+                        <h3>JavaScript</h3>
+                        <p>Язык веб-разработки</p>
+                    </div>
+                    <div class="language-card" onclick="showLanguageInfo('java')">
+                        <div class="language-logo">☕</div>
+                        <h3>Java</h3>
+                        <p>Кроссплатформенный язык</p>
+                    </div>
+                    <div class="language-card" onclick="showLanguageInfo('cpp')">
+                        <div class="language-logo">⚙️</div>
+                        <h3>C++</h3>
+                        <p>Высокопроизводительный язык</p>
+                    </div>
+                    <div class="language-card" onclick="showLanguageInfo('go')">
+                        <div class="language-logo">🚀</div>
+                        <h3>Go</h3>
+                        <p>Современный язык от Google</p>
+                    </div>
+                    <div class="language-card" onclick="showLanguageInfo('rust')">
+                        <div class="language-logo">🦀</div>
+                        <h3>Rust</h3>
+                        <p>Безопасный системный язык</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutorials" class="tutorials">
+            <div class="container">
+                <h2 class="section-title">📖 Туториалы и курсы</h2>
+                <div class="tutorial-grid">
+                    <div class="tutorial-card">
+                        <div class="tutorial-content">
+                            <h3 class="tutorial-title">Основы Python</h3>
+                            <p class="tutorial-desc">Изучи синтаксис Python, переменные, функции и объектно-ориентированное программирование.</p>
+                            <span class="tutorial-level">Начинающий</span>
+                            <div class="code-example">
+print("Hello, World!")
+name = "Программист"
+print(f"Привет, {name}!")</div>
+                        </div>
+                    </div>
+                    <div class="tutorial-card">
+                        <div class="tutorial-content">
+                            <h3 class="tutorial-title">Web-разработка с JavaScript</h3>
+                            <p class="tutorial-desc">Создавай интерактивные веб-сайты с помощью JavaScript, HTML и CSS.</p>
+                            <span class="tutorial-level">Средний</span>
+                            <div class="code-example">
+const greeting = () => {
+  return "Привет, мир!";
+};
+console.log(greeting());</div>
+                        </div>
+                    </div>
+                    <div class="tutorial-card">
+                        <div class="tutorial-content">
+                            <h3 class="tutorial-title">Алгоритмы и структуры данных</h3>
+                            <p class="tutorial-desc">Изучи основные алгоритмы сортировки, поиска и работы с данными.</p>
+                            <span class="tutorial-level">Продвинутый</span>
+                            <div class="code-example">
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+    return -1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="resource-section">
+            <div class="container">
+                <h2 class="section-title">🛠️ Полезные ресурсы</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">📝</div>
+                        <h3>Онлайн редакторы</h3>
+                        <p>CodePen, JSFiddle, Repl.it</p>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">📚</div>
+                        <h3>Документация</h3>
+                        <p>MDN, Python.org, Oracle Docs</p>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">🎮</div>
+                        <h3>Игры для программистов</h3>
+                        <p>CodeWars, HackerRank, LeetCode</p>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">👥</div>
+                        <h3>Сообщества</h3>
+                        <p>Stack Overflow, GitHub, Reddit</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CodeMaster. Изучай программирование с удовольствием! 🚀</p>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Информация о языках программирования
+        function showLanguageInfo(language) {
+            const info = {
+                python: {
+                    title: "Python 🐍",
+                    description: "Python - это высокоуровневый язык программирования, известный своей простотой и читаемостью. Идеально подходит для начинающих!",
+                    uses: "Веб-разработка, Data Science, ИИ, автоматизация"
+                },
+                javascript: {
+                    title: "JavaScript ⚡",
+                    description: "JavaScript - язык программирования, который делает веб-страницы интерактивными. Работает в браузере и на сервере.",
+                    uses: "Веб-разработка, мобильные приложения, серверная разработка"
+                },
+                java: {
+                    title: "Java ☕",
+                    description: "Java - объектно-ориентированный язык программирования, известный принципом 'написал один раз - работает везде'.",
+                    uses: "Корпоративные приложения, Android-разработка, веб-сервисы"
+                },
+                cpp: {
+                    title: "C++ ⚙️",
+                    description: "C++ - мощный язык системного программирования с высокой производительностью.",
+                    uses: "Системное программирование, игры, встроенные системы"
+                },
+                go: {
+                    title: "Go 🚀",
+                    description: "Go - современный язык программирования от Google, созданный для высокопроизводительных приложений.",
+                    uses: "Облачные сервисы, микросервисы, сетевое программирование"
+                },
+                rust: {
+                    title: "Rust 🦀",
+                    description: "Rust - системный язык программирования, обеспечивающий безопасность памяти без сборщика мусора.",
+                    uses: "Системное программирование, блокчейн, веб-ассемблер"
+                }
+            };
+
+            const lang = info[language];
+            if (lang) {
+                alert(`${lang.title}\n\n${lang.description}\n\nОсновные применения: ${lang.uses}\n\nНачни изучение прямо сейчас! 🎯`);
+            }
+        }
+
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Наблюдаем за всеми карточками
+        document.querySelectorAll('.feature-card, .language-card, .tutorial-card, .resource-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Эффект печатающейся машинки для заголовка
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                heroTitle.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        setTimeout(typeWriter, 1000);
+    </script>
 </body>
 </html>
