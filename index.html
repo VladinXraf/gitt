@@ -2,10 +2,675 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мой сайт</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Путь к Богатству - Кликер Игра</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .stats-panel {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .main-game {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .click-area {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .character:hover {
+            transform: scale(1.05);
+        }
+
+        .character:active {
+            transform: scale(0.95);
+        }
+
+        .click-effect {
+            position: absolute;
+            color: #ffd700;
+            font-weight: bold;
+            pointer-events: none;
+            animation: clickAnimation 1s ease-out forwards;
+        }
+
+        @keyframes clickAnimation {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.2);
+            }
+        }
+
+        .click-info {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .click-power {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .money-per-second {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .upgrades-panel {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .upgrades-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .upgrade-item {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .upgrade-item:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(5px);
+        }
+
+        .upgrade-item.affordable {
+            border-color: #4ecdc4;
+        }
+
+        .upgrade-item.affordable:hover {
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+        }
+
+        .upgrade-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .upgrade-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .upgrade-cost {
+            font-size: 1.1rem;
+            color: #ffd700;
+        }
+
+        .achievements {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .achievements-title {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .achievement {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .achievement.unlocked {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: particleFloat 3s ease-out forwards;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-game {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .character {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>🎉 Привет из gitt!</h1>
-    <p>Это мой первый коммит.</p>
+    <div class="particles" id="particles"></div>
+    
+    <div class="game-container">
+        <div class="header">
+            <h1>💰 Путь к Богатству</h1>
+            <p>Кликай, зарабатывай, становись богатым!</p>
+        </div>
+
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-value" id="money">$0</div>
+                <div class="stat-label">Деньги</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="clickPower">1</div>
+                <div class="stat-label">Сила клика</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="moneyPerSecond">0</div>
+                <div class="stat-label">$/сек</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalClicks">0</div>
+                <div class="stat-label">Всего кликов</div>
+            </div>
+        </div>
+
+        <div class="main-game">
+            <div class="click-area">
+                <div class="character" id="character">👤</div>
+                <div class="click-info">
+                    <div class="click-power">Сила клика: <span id="clickPowerDisplay">1</span></div>
+                    <div class="money-per-second">Деньги в секунду: <span id="moneyPerSecondDisplay">0</span></div>
+                </div>
+            </div>
+
+            <div class="upgrades-panel">
+                <h3 class="upgrades-title">🛠️ Улучшения</h3>
+                <div id="upgradesList"></div>
+            </div>
+        </div>
+
+        <div class="achievements">
+            <h3 class="achievements-title">🏆 Достижения</h3>
+            <div id="achievementsList"></div>
+        </div>
+    </div>
+
+    <script>
+        class Game {
+            constructor() {
+                this.money = 0;
+                this.clickPower = 1;
+                this.moneyPerSecond = 0;
+                this.totalClicks = 0;
+                this.achievements = [];
+                
+                this.upgrades = [
+                    {
+                        id: 'better_click',
+                        name: '💪 Сильные руки',
+                        description: 'Увеличивает силу клика на 1',
+                        baseCost: 10,
+                        cost: 10,
+                        owned: 0,
+                        effect: () => this.clickPower += 1
+                    },
+                    {
+                        id: 'auto_clicker',
+                        name: '🤖 Автокликер',
+                        description: 'Автоматически кликает 1 раз в секунду',
+                        baseCost: 50,
+                        cost: 50,
+                        owned: 0,
+                        effect: () => this.moneyPerSecond += this.clickPower
+                    },
+                    {
+                        id: 'click_multiplier',
+                        name: '⚡ Множитель кликов',
+                        description: 'Увеличивает силу клика в 2 раза',
+                        baseCost: 100,
+                        cost: 100,
+                        owned: 0,
+                        effect: () => this.clickPower *= 2
+                    },
+                    {
+                        id: 'money_printer',
+                        name: '🖨️ Денежный принтер',
+                        description: 'Печатает $10 в секунду',
+                        baseCost: 500,
+                        cost: 500,
+                        owned: 0,
+                        effect: () => this.moneyPerSecond += 10
+                    },
+                    {
+                        id: 'golden_hands',
+                        name: '👑 Золотые руки',
+                        description: 'Увеличивает силу клика в 5 раз',
+                        baseCost: 1000,
+                        cost: 1000,
+                        owned: 0,
+                        effect: () => this.clickPower *= 5
+                    },
+                    {
+                        id: 'money_factory',
+                        name: '🏭 Денежная фабрика',
+                        description: 'Производит $100 в секунду',
+                        baseCost: 5000,
+                        cost: 5000,
+                        owned: 0,
+                        effect: () => this.moneyPerSecond += 100
+                    },
+                    {
+                        id: 'diamond_clicker',
+                        name: '💎 Алмазный кликер',
+                        description: 'Увеличивает силу клика в 10 раз',
+                        baseCost: 10000,
+                        cost: 10000,
+                        owned: 0,
+                        effect: () => this.clickPower *= 10
+                    },
+                    {
+                        id: 'money_empire',
+                        name: '🏰 Денежная империя',
+                        description: 'Производит $1000 в секунду',
+                        baseCost: 50000,
+                        cost: 50000,
+                        owned: 0,
+                        effect: () => this.moneyPerSecond += 1000
+                    }
+                ];
+
+                this.achievementList = [
+                    {
+                        id: 'first_click',
+                        name: '🎯 Первый клик',
+                        description: 'Сделайте первый клик',
+                        condition: () => this.totalClicks >= 1,
+                        unlocked: false
+                    },
+                    {
+                        id: 'hundred_clicks',
+                        name: '🔥 100 кликов',
+                        description: 'Сделайте 100 кликов',
+                        condition: () => this.totalClicks >= 100,
+                        unlocked: false
+                    },
+                    {
+                        id: 'thousand_clicks',
+                        name: '💥 1000 кликов',
+                        description: 'Сделайте 1000 кликов',
+                        condition: () => this.totalClicks >= 1000,
+                        unlocked: false
+                    },
+                    {
+                        id: 'first_dollar',
+                        name: '💰 Первый доллар',
+                        description: 'Заработайте $1',
+                        condition: () => this.money >= 1,
+                        unlocked: false
+                    },
+                    {
+                        id: 'hundred_dollars',
+                        name: '💵 $100',
+                        description: 'Заработайте $100',
+                        condition: () => this.money >= 100,
+                        unlocked: false
+                    },
+                    {
+                        id: 'thousand_dollars',
+                        name: '💸 $1000',
+                        description: 'Заработайте $1000',
+                        condition: () => this.money >= 1000,
+                        unlocked: false
+                    },
+                    {
+                        id: 'millionaire',
+                        name: '🏆 Миллионер',
+                        description: 'Заработайте $1,000,000',
+                        condition: () => this.money >= 1000000,
+                        unlocked: false
+                    },
+                    {
+                        id: 'billionaire',
+                        name: '👑 Миллиардер',
+                        description: 'Заработайте $1,000,000,000',
+                        condition: () => this.money >= 1000000000,
+                        unlocked: false
+                    }
+                ];
+
+                this.loadGame();
+                this.init();
+            }
+
+            init() {
+                this.character = document.getElementById('character');
+                this.character.addEventListener('click', () => this.click());
+                
+                this.updateDisplay();
+                this.renderUpgrades();
+                this.renderAchievements();
+                
+                // Автоматическое начисление денег
+                setInterval(() => {
+                    if (this.moneyPerSecond > 0) {
+                        this.money += this.moneyPerSecond;
+                        this.updateDisplay();
+                        this.checkAchievements();
+                    }
+                }, 1000);
+
+                // Сохранение игры каждые 5 секунд
+                setInterval(() => this.saveGame(), 5000);
+            }
+
+            click() {
+                this.money += this.clickPower;
+                this.totalClicks++;
+                this.updateDisplay();
+                this.checkAchievements();
+                this.createClickEffect();
+                this.createParticles();
+            }
+
+            createClickEffect() {
+                const effect = document.createElement('div');
+                effect.className = 'click-effect';
+                effect.textContent = `+$${this.clickPower}`;
+                effect.style.left = Math.random() * 200 + 'px';
+                effect.style.top = Math.random() * 200 + 'px';
+                this.character.appendChild(effect);
+                
+                setTimeout(() => effect.remove(), 1000);
+            }
+
+            createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                for (let i = 0; i < 5; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * window.innerWidth + 'px';
+                    particle.style.top = window.innerHeight + 'px';
+                    particlesContainer.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 3000);
+                }
+            }
+
+            buyUpgrade(upgradeId) {
+                const upgrade = this.upgrades.find(u => u.id === upgradeId);
+                if (upgrade && this.money >= upgrade.cost) {
+                    this.money -= upgrade.cost;
+                    upgrade.owned++;
+                    upgrade.effect();
+                    upgrade.cost = Math.floor(upgrade.baseCost * Math.pow(1.5, upgrade.owned));
+                    this.updateDisplay();
+                    this.renderUpgrades();
+                    this.checkAchievements();
+                }
+            }
+
+            renderUpgrades() {
+                const upgradesList = document.getElementById('upgradesList');
+                upgradesList.innerHTML = '';
+                
+                this.upgrades.forEach(upgrade => {
+                    const upgradeElement = document.createElement('div');
+                    upgradeElement.className = `upgrade-item ${this.money >= upgrade.cost ? 'affordable' : ''}`;
+                    upgradeElement.innerHTML = `
+                        <div class="upgrade-name">${upgrade.name} (${upgrade.owned})</div>
+                        <div class="upgrade-description">${upgrade.description}</div>
+                        <div class="upgrade-cost">$${this.formatNumber(upgrade.cost)}</div>
+                    `;
+                    upgradeElement.addEventListener('click', () => this.buyUpgrade(upgrade.id));
+                    upgradesList.appendChild(upgradeElement);
+                });
+            }
+
+            renderAchievements() {
+                const achievementsList = document.getElementById('achievementsList');
+                achievementsList.innerHTML = '';
+                
+                this.achievementList.forEach(achievement => {
+                    const achievementElement = document.createElement('div');
+                    achievementElement.className = `achievement ${achievement.unlocked ? 'unlocked' : ''}`;
+                    achievementElement.innerHTML = `
+                        <span>${achievement.name}</span>
+                        <span>${achievement.description}</span>
+                    `;
+                    achievementsList.appendChild(achievementElement);
+                });
+            }
+
+            checkAchievements() {
+                this.achievementList.forEach(achievement => {
+                    if (!achievement.unlocked && achievement.condition()) {
+                        achievement.unlocked = true;
+                        this.showAchievementNotification(achievement);
+                    }
+                });
+            }
+
+            showAchievementNotification(achievement) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(45deg, #ffd700, #ffed4e);
+                    color: #333;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    font-weight: bold;
+                    z-index: 10000;
+                    animation: slideIn 0.5s ease-out;
+                `;
+                notification.innerHTML = `
+                    <div>🏆 Достижение разблокировано!</div>
+                    <div>${achievement.name}</div>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.remove(), 3000);
+            }
+
+            updateDisplay() {
+                document.getElementById('money').textContent = '$' + this.formatNumber(this.money);
+                document.getElementById('clickPower').textContent = this.formatNumber(this.clickPower);
+                document.getElementById('moneyPerSecond').textContent = this.formatNumber(this.moneyPerSecond);
+                document.getElementById('totalClicks').textContent = this.formatNumber(this.totalClicks);
+                document.getElementById('clickPowerDisplay').textContent = this.formatNumber(this.clickPower);
+                document.getElementById('moneyPerSecondDisplay').textContent = this.formatNumber(this.moneyPerSecond);
+            }
+
+            formatNumber(num) {
+                if (num >= 1000000000) {
+                    return (num / 1000000000).toFixed(1) + 'B';
+                } else if (num >= 1000000) {
+                    return (num / 1000000).toFixed(1) + 'M';
+                } else if (num >= 1000) {
+                    return (num / 1000).toFixed(1) + 'K';
+                }
+                return Math.floor(num).toString();
+            }
+
+            saveGame() {
+                const gameData = {
+                    money: this.money,
+                    clickPower: this.clickPower,
+                    moneyPerSecond: this.moneyPerSecond,
+                    totalClicks: this.totalClicks,
+                    upgrades: this.upgrades,
+                    achievements: this.achievementList
+                };
+                localStorage.setItem('wealthGame', JSON.stringify(gameData));
+            }
+
+            loadGame() {
+                const savedData = localStorage.getItem('wealthGame');
+                if (savedData) {
+                    const gameData = JSON.parse(savedData);
+                    this.money = gameData.money || 0;
+                    this.clickPower = gameData.clickPower || 1;
+                    this.moneyPerSecond = gameData.moneyPerSecond || 0;
+                    this.totalClicks = gameData.totalClicks || 0;
+                    this.upgrades = gameData.upgrades || this.upgrades;
+                    this.achievementList = gameData.achievements || this.achievementList;
+                }
+            }
+        }
+
+        // Добавляем CSS для анимации уведомлений
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Запускаем игру
+        const game = new Game();
+    </script>
 </body>
 </html>
