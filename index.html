@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeMaster - Изучение программирования</title>
+    <title>DevHub - Портал для программистов</title>
     <style>
         * {
             margin: 0;
@@ -12,11 +12,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background-color: #f8f9fa;
         }
 
         .container {
@@ -26,26 +25,25 @@
         }
 
         header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 0;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2563eb;
             text-decoration: none;
         }
 
@@ -56,188 +54,201 @@
         }
 
         .nav-links a {
-            color: white;
+            color: #64748b;
             text-decoration: none;
-            transition: color 0.3s ease;
             font-weight: 500;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: #ffd700;
+            color: #2563eb;
         }
 
         main {
             margin-top: 80px;
-            padding: 2rem 0;
         }
 
         .hero {
-            text-align: center;
-            padding: 4rem 0;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             color: white;
+            padding: 5rem 0;
+            text-align: center;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            font-weight: 700;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-button {
+        .btn {
             display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            background: #2563eb;
             color: white;
-            padding: 15px 30px;
+            padding: 12px 24px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.2s;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .btn:hover {
+            background: #1d4ed8;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .languages {
-            margin: 4rem 0;
+        .section {
+            padding: 4rem 0;
         }
 
         .section-title {
-            text-align: center;
-            color: white;
             font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .language-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
         .language-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .language-card:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
         }
 
-        .language-logo {
-            font-size: 2.5rem;
+        .language-card h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .language-card p {
+            color: #64748b;
             margin-bottom: 1rem;
         }
 
-        .tutorials {
-            margin: 4rem 0;
+        .language-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #64748b;
         }
 
-        .tutorial-grid {
+        .tutorials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
         .tutorial-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
+            background: white;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
 
         .tutorial-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-2px);
+        }
+
+        .tutorial-header {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tutorial-title {
+            color: #1e293b;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutorial-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
         }
 
         .tutorial-content {
             padding: 1.5rem;
-            color: white;
         }
 
-        .tutorial-title {
-            font-size: 1.3rem;
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .resource-card h3 {
+            color: #1e293b;
             margin-bottom: 1rem;
-            color: #ffd700;
         }
 
-        .tutorial-desc {
-            opacity: 0.9;
-            margin-bottom: 1rem;
+        .resource-links {
+            list-style: none;
+            margin-top: 1rem;
         }
 
-        .tutorial-level {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        .resource-links li {
+            margin: 0.5rem 0;
+        }
+
+        .resource-links a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .resource-links a:hover {
+            text-decoration: underline;
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.3);
+            background: #1e293b;
             color: white;
             text-align: center;
             padding: 2rem 0;
             margin-top: 4rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         @media (max-width: 768px) {
@@ -246,204 +257,265 @@
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
-            .features {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 2rem;
             }
         }
 
-        .code-example {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            border-left: 4px solid #ffd700;
+        .stats {
+            background: white;
+            padding: 3rem 0;
         }
 
-        .resource-section {
-            margin: 4rem 0;
-        }
-
-        .resource-grid {
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .resource-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 10px;
-            color: white;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .resource-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .resource-icon {
+        .stat-item h3 {
             font-size: 2rem;
-            margin-bottom: 1rem;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #64748b;
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo">💻 CodeMaster</a>
+            <a href="#" class="logo">DevHub</a>
             <ul class="nav-links">
-                <li><a href="#home">Главная</a></li>
                 <li><a href="#languages">Языки</a></li>
-                <li><a href="#tutorials">Туториалы</a></li>
+                <li><a href="#tutorials">Обучение</a></li>
                 <li><a href="#resources">Ресурсы</a></li>
+                <li><a href="#tools">Инструменты</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="home" class="hero">
+        <section class="hero">
             <div class="container">
-                <h1>🚀 Изучай программирование легко!</h1>
-                <p>Твой путь в мир кода начинается здесь. Изучай популярные языки программирования, выполняй практические задания и становись профессиональным разработчиком.</p>
-                <a href="#languages" class="cta-button">Начать обучение</a>
+                <h1>Портал для разработчиков</h1>
+                <p>Актуальная информация о языках программирования, инструментах разработки и лучших практиках от сообщества профессионалов.</p>
+                <a href="#languages" class="btn">Изучить языки</a>
             </div>
         </section>
 
-        <section class="features">
+        <section class="stats">
             <div class="container">
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Структурированное обучение</h3>
-                    <p>Пошаговые уроки от основ до продвинутых тем</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3>Практические примеры</h3>
-                    <p>Реальные проекты и задачи для закрепления знаний</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Интерактивность</h3>
-                    <p>Попробуй код прямо в браузере</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Языков программирования</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>200+</h3>
+                        <p>Практических примеров</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>1000+</h3>
+                        <p>Активных разработчиков</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Поддержка сообщества</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="languages" class="languages">
+        <section id="languages" class="section">
             <div class="container">
-                <h2 class="section-title">🌟 Популярные языки программирования</h2>
-                <div class="language-grid">
-                    <div class="language-card" onclick="showLanguageInfo('python')">
-                        <div class="language-logo">🐍</div>
+                <h2 class="section-title">Популярные языки программирования</h2>
+                <div class="languages-grid">
+                    <div class="language-card">
                         <h3>Python</h3>
-                        <p>Простой и мощный язык для начинающих</p>
+                        <p>Универсальный язык для веб-разработки, анализа данных, машинного обучения и автоматизации.</p>
+                        <div class="language-stats">
+                            <span>Сложность: ★★☆☆☆</span>
+                            <span>Популярность: #1</span>
+                        </div>
                     </div>
-                    <div class="language-card" onclick="showLanguageInfo('javascript')">
-                        <div class="language-logo">⚡</div>
+                    <div class="language-card">
                         <h3>JavaScript</h3>
-                        <p>Язык веб-разработки</p>
+                        <p>Основной язык веб-разработки для создания интерактивных пользовательских интерфейсов.</p>
+                        <div class="language-stats">
+                            <span>Сложность: ★★★☆☆</span>
+                            <span>Популярность: #2</span>
+                        </div>
                     </div>
-                    <div class="language-card" onclick="showLanguageInfo('java')">
-                        <div class="language-logo">☕</div>
+                    <div class="language-card">
                         <h3>Java</h3>
-                        <p>Кроссплатформенный язык</p>
+                        <p>Надежный язык для корпоративной разработки, Android-приложений и высоконагруженных систем.</p>
+                        <div class="language-stats">
+                            <span>Сложность: ★★★★☆</span>
+                            <span>Популярность: #3</span>
+                        </div>
                     </div>
-                    <div class="language-card" onclick="showLanguageInfo('cpp')">
-                        <div class="language-logo">⚙️</div>
-                        <h3>C++</h3>
-                        <p>Высокопроизводительный язык</p>
+                    <div class="language-card">
+                        <h3>TypeScript</h3>
+                        <p>Типизированная надстройка над JavaScript для разработки масштабируемых приложений.</p>
+                        <div class="language-stats">
+                            <span>Сложность: ★★★☆☆</span>
+                            <span>Популярность: #4</span>
+                        </div>
                     </div>
-                    <div class="language-card" onclick="showLanguageInfo('go')">
-                        <div class="language-logo">🚀</div>
+                    <div class="language-card">
                         <h3>Go</h3>
-                        <p>Современный язык от Google</p>
+                        <p>Современный язык от Google для создания высокопроизводительных серверных приложений.</p>
+                        <div class="language-stats">
+                            <span>Сложность: ★★★☆☆</span>
+                            <span>Популярность: #5</span>
+                        </div>
                     </div>
-                    <div class="language-card" onclick="showLanguageInfo('rust')">
-                        <div class="language-logo">🦀</div>
+                    <div class="language-card">
                         <h3>Rust</h3>
-                        <p>Безопасный системный язык</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tutorials" class="tutorials">
-            <div class="container">
-                <h2 class="section-title">📖 Туториалы и курсы</h2>
-                <div class="tutorial-grid">
-                    <div class="tutorial-card">
-                        <div class="tutorial-content">
-                            <h3 class="tutorial-title">Основы Python</h3>
-                            <p class="tutorial-desc">Изучи синтаксис Python, переменные, функции и объектно-ориентированное программирование.</p>
-                            <span class="tutorial-level">Начинающий</span>
-                            <div class="code-example">
-print("Hello, World!")
-name = "Программист"
-print(f"Привет, {name}!")</div>
-                        </div>
-                    </div>
-                    <div class="tutorial-card">
-                        <div class="tutorial-content">
-                            <h3 class="tutorial-title">Web-разработка с JavaScript</h3>
-                            <p class="tutorial-desc">Создавай интерактивные веб-сайты с помощью JavaScript, HTML и CSS.</p>
-                            <span class="tutorial-level">Средний</span>
-                            <div class="code-example">
-const greeting = () => {
-  return "Привет, мир!";
-};
-console.log(greeting());</div>
-                        </div>
-                    </div>
-                    <div class="tutorial-card">
-                        <div class="tutorial-content">
-                            <h3 class="tutorial-title">Алгоритмы и структуры данных</h3>
-                            <p class="tutorial-desc">Изучи основные алгоритмы сортировки, поиска и работы с данными.</p>
-                            <span class="tutorial-level">Продвинутый</span>
-                            <div class="code-example">
-def binary_search(arr, target):
-    left, right = 0, len(arr) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if arr[mid] == target:
-            return mid
-    return -1</div>
+                        <p>Системный язык программирования с фокусом на безопасность и производительность.</p>
+                        <div class="language-stats">
+                            <span>Сложность: ★★★★★</span>
+                            <span>Популярность: #6</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="resources" class="resource-section">
+        <section id="tutorials" class="section" style="background: #f8f9fa;">
             <div class="container">
-                <h2 class="section-title">🛠️ Полезные ресурсы</h2>
-                <div class="resource-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">📝</div>
-                        <h3>Онлайн редакторы</h3>
-                        <p>CodePen, JSFiddle, Repl.it</p>
+                <h2 class="section-title">Практические руководства</h2>
+                <div class="tutorials-grid">
+                    <div class="tutorial-card">
+                        <div class="tutorial-header">
+                            <h3 class="tutorial-title">REST API на Python с Flask</h3>
+                            <div class="tutorial-meta">
+                                <span>Уровень: Средний</span>
+                                <span>Время: 45 мин</span>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <p>Создание RESTful API с использованием Flask и SQLAlchemy для работы с базой данных.</p>
+                            <div class="code-block">from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///api.db'
+db = SQLAlchemy(app)
+
+@app.route('/api/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    return jsonify([user.to_dict() for user in users])</div>
+                        </div>
                     </div>
+                    <div class="tutorial-card">
+                        <div class="tutorial-header">
+                            <h3 class="tutorial-title">Асинхронное программирование в JavaScript</h3>
+                            <div class="tutorial-meta">
+                                <span>Уровень: Продвинутый</span>
+                                <span>Время: 60 мин</span>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <p>Изучение async/await, промисов и обработки асинхронных операций в современном JavaScript.</p>
+                            <div class="code-block">async function fetchUserData(userId) {
+  try {
+    const response = await fetch(`/api/users/${userId}`);
+    const userData = await response.json();
+    return userData;
+  } catch (error) {
+    console.error('Ошибка загрузки данных:', error);
+    throw error;
+  }
+}</div>
+                        </div>
+                    </div>
+                    <div class="tutorial-card">
+                        <div class="tutorial-header">
+                            <h3 class="tutorial-title">Микросервисы на Go</h3>
+                            <div class="tutorial-meta">
+                                <span>Уровень: Продвинутый</span>
+                                <span>Время: 90 мин</span>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <p>Построение масштабируемой архитектуры микросервисов с использованием Go и gRPC.</p>
+                            <div class="code-block">package main
+
+import (
+    "context"
+    "log"
+    "net"
+    "google.golang.org/grpc"
+)
+
+type server struct {
+    pb.UnimplementedUserServiceServer
+}
+
+func (s *server) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.User, error) {
+    return &pb.User{
+        Id:   req.Id,
+        Name: "John Doe",
+    }, nil
+}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="section">
+            <div class="container">
+                <h2 class="section-title">Полезные ресурсы</h2>
+                <div class="resources-grid">
                     <div class="resource-card">
-                        <div class="resource-icon">📚</div>
                         <h3>Документация</h3>
-                        <p>MDN, Python.org, Oracle Docs</p>
+                        <p>Официальная документация языков и фреймворков</p>
+                        <ul class="resource-links">
+                            <li><a href="https://docs.python.org/">Python Docs</a></li>
+                            <li><a href="https://developer.mozilla.org/">MDN Web Docs</a></li>
+                            <li><a href="https://docs.oracle.com/javase/">Java SE Docs</a></li>
+                            <li><a href="https://golang.org/doc/">Go Documentation</a></li>
+                        </ul>
                     </div>
                     <div class="resource-card">
-                        <div class="resource-icon">🎮</div>
-                        <h3>Игры для программистов</h3>
-                        <p>CodeWars, HackerRank, LeetCode</p>
+                        <h3>Онлайн IDE</h3>
+                        <p>Среды разработки в браузере</p>
+                        <ul class="resource-links">
+                            <li><a href="https://replit.com/">Replit</a></li>
+                            <li><a href="https://codesandbox.io/">CodeSandbox</a></li>
+                            <li><a href="https://gitpod.io/">Gitpod</a></li>
+                            <li><a href="https://codepen.io/">CodePen</a></li>
+                        </ul>
                     </div>
                     <div class="resource-card">
-                        <div class="resource-icon">👥</div>
+                        <h3>Практика кода</h3>
+                        <p>Платформы для решения задач</p>
+                        <ul class="resource-links">
+                            <li><a href="https://leetcode.com/">LeetCode</a></li>
+                            <li><a href="https://www.hackerrank.com/">HackerRank</a></li>
+                            <li><a href="https://www.codewars.com/">Codewars</a></li>
+                            <li><a href="https://exercism.io/">Exercism</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-card">
                         <h3>Сообщества</h3>
-                        <p>Stack Overflow, GitHub, Reddit</p>
+                        <p>Общение с разработчиками</p>
+                        <ul class="resource-links">
+                            <li><a href="https://stackoverflow.com/">Stack Overflow</a></li>
+                            <li><a href="https://github.com/">GitHub</a></li>
+                            <li><a href="https://dev.to/">DEV Community</a></li>
+                            <li><a href="https://www.reddit.com/r/programming/">r/programming</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -452,104 +524,23 @@ def binary_search(arr, target):
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 CodeMaster. Изучай программирование с удовольствием! 🚀</p>
+            <p>&copy; 2025 DevHub. Портал создан разработчиками для разработчиков.</p>
         </div>
     </footer>
 
     <script>
-        // Плавная прокрутка для навигации
+        // Простая навигация
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                        behavior: 'smooth'
                     });
                 }
             });
         });
-
-        // Информация о языках программирования
-        function showLanguageInfo(language) {
-            const info = {
-                python: {
-                    title: "Python 🐍",
-                    description: "Python - это высокоуровневый язык программирования, известный своей простотой и читаемостью. Идеально подходит для начинающих!",
-                    uses: "Веб-разработка, Data Science, ИИ, автоматизация"
-                },
-                javascript: {
-                    title: "JavaScript ⚡",
-                    description: "JavaScript - язык программирования, который делает веб-страницы интерактивными. Работает в браузере и на сервере.",
-                    uses: "Веб-разработка, мобильные приложения, серверная разработка"
-                },
-                java: {
-                    title: "Java ☕",
-                    description: "Java - объектно-ориентированный язык программирования, известный принципом 'написал один раз - работает везде'.",
-                    uses: "Корпоративные приложения, Android-разработка, веб-сервисы"
-                },
-                cpp: {
-                    title: "C++ ⚙️",
-                    description: "C++ - мощный язык системного программирования с высокой производительностью.",
-                    uses: "Системное программирование, игры, встроенные системы"
-                },
-                go: {
-                    title: "Go 🚀",
-                    description: "Go - современный язык программирования от Google, созданный для высокопроизводительных приложений.",
-                    uses: "Облачные сервисы, микросервисы, сетевое программирование"
-                },
-                rust: {
-                    title: "Rust 🦀",
-                    description: "Rust - системный язык программирования, обеспечивающий безопасность памяти без сборщика мусора.",
-                    uses: "Системное программирование, блокчейн, веб-ассемблер"
-                }
-            };
-
-            const lang = info[language];
-            if (lang) {
-                alert(`${lang.title}\n\n${lang.description}\n\nОсновные применения: ${lang.uses}\n\nНачни изучение прямо сейчас! 🎯`);
-            }
-        }
-
-        // Анимация появления элементов при прокрутке
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Наблюдаем за всеми карточками
-        document.querySelectorAll('.feature-card, .language-card, .tutorial-card, .resource-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-
-        // Эффект печатающейся машинки для заголовка
-        const heroTitle = document.querySelector('.hero h1');
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                heroTitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        };
-        
-        setTimeout(typeWriter, 1000);
     </script>
 </body>
 </html>
